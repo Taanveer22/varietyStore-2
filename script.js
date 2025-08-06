@@ -26,24 +26,21 @@ const displayProducts = (data) => {
   data.forEach((element) => {
     // console.log(element);
     const div = document.createElement("div");
-    div.className = "p-5";
     div.innerHTML = `
-    <div class="card bg-green-300 shadow-sm">
-          <figure class="max-w-36 mx-auto">
+    <div class="card bg-green-300 shadow-sm h-96">
+          <figure class="w-32 h-32 mx-auto m-5">
             <img
               src="${element.image}"
-              class="rounded-xl w-full"
+              class="rounded-xl w-full h-full"
             />
           </figure>
           <div class="card-body items-center text-center">
             <h2 class="card-title">Title : ${element.title.slice(0, 15)} </h2>
-            <div class="flex items-center gap-10 font-bold">
+            <button class="btn btn-warning">Category : ${
+              element.category
+            }</button>
+            <div class="flex items-center gap-2 font-bold">
               <p>Price : ${element.price}</p>
-              <button class="btn btn-warning">Category : ${
-                element.category
-              }</button>
-            </div>
-            <div class="flex items-center gap-10 font-bold">
               <p>Count : ${element.rating.count}</p>
               <p>Rating : ${element.rating.rate}</p>
             </div>
