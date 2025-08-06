@@ -1,15 +1,23 @@
 console.log("connected");
 
-const loadProducts = async () => {
-  const res = await fetch(`https://fakestoreapi.com/products`);
+// data load from api==============================
+const loadProducts = async (query = "") => {
+  document.querySelector("#loading-spinner").classList.remove("hidden");
+  console.log(query);
+  const res = await fetch(`https://fakestoreapi.com/products${query}`);
   const data = await res.json();
+  if (data.length > 0) {
+    document.querySelector("#loading-spinner").classList.add("hidden");
+  }
   displayProducts(data);
 };
 
+// data showed in the ui======================================
 const displayProducts = (data) => {
   // console.log(data);
   const cardContainer = document.querySelector(".card-container");
-  console.log(cardContainer);
+  cardContainer.innerHTML = "";
+  // console.log(cardContainer);
   data.forEach((element) => {
     // console.log(element);
     const div = document.createElement("div");
@@ -23,10 +31,12 @@ const displayProducts = (data) => {
             />
           </figure>
           <div class="card-body items-center text-center">
-            <h2 class="card-title">Title : ${element.title.slice(0,15)} </h2>
+            <h2 class="card-title">Title : ${element.title.slice(0, 15)} </h2>
             <div class="flex items-center gap-10 font-bold">
               <p>Price : ${element.price}</p>
-              <button class="btn btn-warning">Category : ${element.category}</button>
+              <button class="btn btn-warning">Category : ${
+                element.category
+              }</button>
             </div>
             <div class="flex items-center gap-10 font-bold">
               <p>Count : ${element.rating.count}</p>
@@ -42,5 +52,13 @@ const displayProducts = (data) => {
   });
 };
 
-// final function invocation
+// search functionality implementation=============================
+const handleSearch = () => {
+  // console.log("search btn clicked");
+  const searchInputValue = document.querySelector("#search-input").value;
+  console.log(searchInputValue);
+  loadProducts(`/category/${searchInputValue}`);
+};
+
+// final function invocation================================
 loadProducts();

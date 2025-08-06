@@ -27,38 +27,20 @@
               placeholder="Search by category"
               class="input input-bordered w-24 md:w-auto"
             />
-            <button class="btn btn-primary">Search</button>
+            <button
+              onclick="handleSearch()"
+              id="search-btn"
+              class="btn btn-primary"
+            >
+              Search
+            </button>
           </div>
         </div>
       </nav>
     </header>
 
     <main class="w-11/12 mx-auto mb-16 flex justify-between gap-10">
-      <section class="w-2/5 card-container">
-        <!-- <div class="card bg-base-100 shadow-sm">
-          <figure class="px-10 pt-10">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-              alt="Shoes"
-              class="rounded-xl"
-            />
-          </figure>
-          <div class="card-body items-center text-center">
-            <h2 class="card-title">Title : </h2>
-            <div class="flex gap-10 font-bold">
-              <p>Price :</p>
-              <p>Category :</p>
-            </div>
-            <div class="flex gap-10 font-bold">
-              <p>Count :</p>
-              <p>Rating :</p>
-            </div>
-            <div class="card-actions">
-              <button class="btn btn-primary">Add To Cart</button>
-            </div>
-          </div>
-        </div> -->
-      </section>
+      <section class="w-2/5 card-container"></section>
 
       <section class="w-2/5 dynamic-cart">
         <div class="border-2 border-gray-300 rounded-lg">
@@ -73,6 +55,18 @@
         </div>
       </section>
     </main>
+
+    <footer>
+      <!-- loading spinner -->
+      <div id="loading-spinner" class="hidden">
+        <img src="./image/spinner.gif" alt="" />
+      </div>
+
+      <!-- not found info -->
+      <div id="data-not-found" class="hidden">
+        <img src="./image/not-found.png" alt="" />
+      </div>
+    </footer>
 
     <script src="./script.js"></script>
   </body>
