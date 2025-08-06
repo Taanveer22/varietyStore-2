@@ -8,6 +8,11 @@ const loadProducts = async (query = "") => {
   const data = await res.json();
   if (data.length > 0) {
     document.querySelector("#loading-spinner").classList.add("hidden");
+    document.querySelector("#data-not-found").classList.add("hidden");
+  }
+  if (!data.length) {
+    document.querySelector("#data-not-found").classList.remove("hidden");
+    document.querySelector("#loading-spinner").classList.add("hidden");
   }
   displayProducts(data);
 };
