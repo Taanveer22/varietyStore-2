@@ -20,7 +20,7 @@ const loadProducts = async (query = "") => {
 // data showed in the ui======================================
 const displayProducts = (data) => {
   // console.log(data);
-  const cardContainer = document.querySelector(".card-container");
+  const cardContainer = document.querySelector("#card-container");
   cardContainer.innerHTML = "";
   // console.log(cardContainer);
   data.forEach((element) => {
@@ -45,7 +45,9 @@ const displayProducts = (data) => {
               <p>Rating : ${element.rating.rate}</p>
             </div>
             <div class="card-actions">
-              <button class="btn btn-primary">Add To Cart</button>
+              <button onclick="addToCart('${element.title}', '${
+      element.price
+    }')" class="btn btn-primary">Add To Cart</button>
             </div>
           </div>
         </div>
@@ -60,6 +62,20 @@ const handleSearch = () => {
   const searchInputValue = document.querySelector("#search-input").value;
   console.log(searchInputValue);
   loadProducts(`/category/${searchInputValue}`);
+};
+
+// dynamic cart functionality
+const addToCart = (title, price) => {
+  console.log(title, price);
+
+  const dynamicCart = document.querySelector("#dynamic-cart");
+  const div = document.createElement("div");
+  div.className = "flex justify-around items-center m-2";
+  div.innerHTML = `
+  <p>${title.slice(0, 11)}</p>
+  <p>${price}</p>
+  `;
+  dynamicCart.appendChild(div);
 };
 
 // final function invocation================================
